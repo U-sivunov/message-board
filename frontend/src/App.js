@@ -1,24 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useEffect, useState} from "react";
+import {QueryClient, QueryClientProvider} from "react-query";
+import MessageList from "./components/MessageList";
+import NewMessage from "./components/NewMessage";
+
+const queryClient = new QueryClient();
+const ws = new WebSocket('ws://localhost:3030');
+ws.onmessage = wsHandler;
+function wsHandler(m) {
+  console.log(m.data)
+  queryClient.invalidateQueries('messages')
+}
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className="App">
+        <header className="App-header">
+          Welcome!
+        </header>
+        <MessageList/>
+        <NewMessage/>
+      </div>
+    </QueryClientProvider>
   );
 }
 
