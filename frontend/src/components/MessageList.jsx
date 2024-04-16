@@ -8,7 +8,8 @@ export default function MessageList() {
       "http://localhost:3000/messages", {
         method: 'GET',
       }
-    ).then((res) => res.json())
+    ).then((res) => res.json()),
+  { refetchOnWindowFocus: false }
   );
   return (
     <div>

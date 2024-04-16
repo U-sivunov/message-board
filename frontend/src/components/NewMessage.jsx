@@ -1,9 +1,6 @@
 import React from "react";
-import {useMutation} from "react-query";
 
 export default function NewMessage() {
-  const mutation = useMutation(message => sendMessage(message))
-
   function sendMessage(data) {
     return fetch(
       "http://localhost:3000/messages", {
@@ -19,8 +16,10 @@ export default function NewMessage() {
   function onSubmit(event) {
     event.preventDefault();
     const fields = Object.fromEntries(new FormData(event.target));
-    mutation.mutate(fields);
-    event.target.reset();
+    sendMessage(fields).then( () => {
+        event.target.reset();
+    });
+
   }
 
   return (

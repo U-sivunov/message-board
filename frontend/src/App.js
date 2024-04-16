@@ -8,8 +8,26 @@ const queryClient = new QueryClient();
 const ws = new WebSocket('ws://localhost:3030');
 ws.onmessage = wsHandler;
 function wsHandler(m) {
+  const data = JSON.parse(m.data);
+  if (data.type === 'new-message') {
+    queryClient.setQueryData('messages', (messages) => addMessage(messages, data.payload));
+  } else if (data.type === 'delete-message') {
+    queryClient.setQueryData('messages', (messages) => deleteMessage(messages, data.payload.id));
+  } else {
     queryClient.invalidateQueries('messages');
+  };
 }
+
+function addMessage(messages, mes) {
+  messages.push(mes);
+  return messages;
+
+}
+
+function deleteMessage(messages, id) {
+  return messages.filter(m => m._id !== id);
+}
+
 
 function App() {
   return (
