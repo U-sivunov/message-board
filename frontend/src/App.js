@@ -1,5 +1,4 @@
 import './App.css';
-import React, {useEffect, useState} from "react";
 import {QueryClient, QueryClientProvider} from "react-query";
 import MessageList from "./components/MessageList";
 import NewMessage from "./components/NewMessage";
@@ -15,7 +14,7 @@ function wsHandler(m) {
     queryClient.setQueryData('messages', (messages) => deleteMessage(messages, data.payload.id));
   } else {
     queryClient.invalidateQueries('messages');
-  };
+  }
 }
 
 function addMessage(messages, mes) {
