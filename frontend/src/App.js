@@ -4,7 +4,8 @@ import MessageList from "./components/MessageList";
 import NewMessage from "./components/NewMessage";
 
 const queryClient = new QueryClient();
-const ws = new WebSocket('ws://localhost:3030');
+const url = process.env.REACT_APP_SOCKET_URL;
+const ws = new WebSocket(url);
 ws.onmessage = wsHandler;
 function wsHandler(m) {
   const data = JSON.parse(m.data);

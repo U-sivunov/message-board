@@ -1,9 +1,10 @@
 import React from "react";
 
+const url = process.env.REACT_APP_API_URL + 'messages';
 export default function NewMessage() {
   function sendMessage(data) {
     return fetch(
-      "http://localhost:3000/messages", {
+      url, {
         method: 'POST',
         headers: {
           'Content-type': 'application/json; charset=UTF-8',

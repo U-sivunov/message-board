@@ -2,10 +2,11 @@ import React from "react";
 import {useQuery} from "react-query";
 import Message from "./Message";
 
+const url = process.env.REACT_APP_API_URL + 'messages';
 export default function MessageList() {
   const { isLoading, error, data, isSuccess } = useQuery(["messages"], () =>
     fetch(
-      "http://localhost:3000/messages", {
+      url, {
         method: 'GET',
       }
     ).then((res) => res.json()),
