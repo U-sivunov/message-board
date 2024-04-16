@@ -12,11 +12,10 @@ export default function Message({createdAt, message, _id}) {
       }
     )
   }
-
   return (
-    <div>
+    <div className="message">
       <div>
-        <h3>{createdAt.toString()}:</h3>
+        <b>{createdAt.toString()}:</b>
         <div>
           {message}
         </div>

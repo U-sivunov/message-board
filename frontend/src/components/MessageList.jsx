@@ -3,11 +3,6 @@ import {useQuery} from "react-query";
 import Message from "./Message";
 
 export default function MessageList() {
-
-
-
-
-
   const { isLoading, error, data, isSuccess } = useQuery(["messages"], () =>
     fetch(
       "http://localhost:3000/messages", {

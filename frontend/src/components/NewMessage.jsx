@@ -24,7 +24,7 @@ export default function NewMessage() {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className="new-message" onSubmit={onSubmit}>
       <textarea className='new-message-text' name='message'/>
       <button>Send</button>
     </form>

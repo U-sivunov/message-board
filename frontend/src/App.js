@@ -8,10 +8,8 @@ const queryClient = new QueryClient();
 const ws = new WebSocket('ws://localhost:3030');
 ws.onmessage = wsHandler;
 function wsHandler(m) {
-  console.log(m.data)
-  queryClient.invalidateQueries('messages')
+    queryClient.invalidateQueries('messages');
 }
-
 
 function App() {
   return (
