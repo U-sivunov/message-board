@@ -29,7 +29,6 @@ messageRoutes.post('/messages', (req, res) => {
 });
 
 messageRoutes.delete('/messages', (req, res) => {
-  console.log(req.body);
   Message.deleteOne({_id: req.body.id})
     .then(data => {
     const wsMessage = JSON.stringify({type: 'delete-message', payload: {id: req.body.id}})

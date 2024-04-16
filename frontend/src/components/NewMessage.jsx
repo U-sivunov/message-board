@@ -19,7 +19,8 @@ export default function NewMessage() {
   function onSubmit(event) {
     event.preventDefault();
     const fields = Object.fromEntries(new FormData(event.target));
-    mutation.mutate(fields)
+    mutation.mutate(fields);
+    event.target.reset();
   }
 
   return (
